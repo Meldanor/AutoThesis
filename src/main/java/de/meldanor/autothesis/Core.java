@@ -28,7 +28,7 @@ package de.meldanor.autothesis;/*
 public class Core {
 
     private static final String USER = "Meldanor";
-    private static final String REPO = "NeonGenesisThesis";
+    private static final String REPO = "AutoThesis";
 
     public static void main(String[] args) throws Exception {
 

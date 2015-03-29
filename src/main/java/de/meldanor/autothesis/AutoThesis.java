@@ -35,12 +35,14 @@ public class AutoThesis implements Closeable {
     private final Client client;
     private final UpdateCheck updateCheck;
     private final ThesisCompiler thesisCompiler;
+    private final ReleaseCreator releaseCreator;
 
     public AutoThesis(String user, String repo, String token) throws Exception {
 
         this.client = ClientBuilder.newClient();
         this.updateCheck = new UpdateCheck(client, user, repo, token);
         this.thesisCompiler = new ThesisCompiler();
+        this.releaseCreator = new ReleaseCreator(client, user, repo, token);
     }
 
     public void execute() throws Exception {
@@ -48,6 +50,9 @@ public class AutoThesis implements Closeable {
         if (updateCheck.hasRepositoryUpdated()) {
             System.out.println("New update found - create new release");
             thesisCompiler.execute();
+            releaseCreator.execute();
+
+            System.out.println("Update finished");
             // Do stuff
         } else {
             System.out.println("No updates found");
