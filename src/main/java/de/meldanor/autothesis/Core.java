@@ -22,8 +22,6 @@ package de.meldanor.autothesis;/*
  * THE SOFTWARE.
  */
 
-import de.meldanor.autothesis.AutoThesis;
-
 /**
  *
  */
@@ -31,13 +29,21 @@ public class Core {
 
     private static final String USER = "Meldanor";
     private static final String REPO = "NeonGenesisThesis";
-    private static final String TOKEN = "naGuysThisDontWork!";
 
     public static void main(String[] args) throws Exception {
 
-        System.out.println("Hello World, this is AutoThesis!");
+        String token;
+        try {
+            token = new TokenLoader().getToken();
+        } catch (TokenLoader.NoTokenFileException e) {
+            System.out.println("You didn't specify the access token to the repository.");
+            System.out.println("Please take a look at the file 'token.json' and add your token.");
+            System.out.println("After this, start the program again.");
+            return;
+        }
 
-        AutoThesis autoThesis = new AutoThesis(USER, REPO, TOKEN);
+        System.out.println("Hello World, this is AutoThesis!");
+        AutoThesis autoThesis = new AutoThesis(USER, REPO, token);
         autoThesis.execute();
     }
 }
