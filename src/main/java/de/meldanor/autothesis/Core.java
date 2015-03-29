@@ -1,4 +1,4 @@
-/*
+package de.meldanor.autothesis;/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2015 Kilian Gärtner
@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+import de.meldanor.autothesis.AutoThesis;
+
 /**
  *
  */
@@ -33,7 +35,7 @@ public class Core {
 
     public static void main(String[] args) throws Exception {
 
-        System.out.println("Hello World, this is AutoThesis!");
+        System.out.println("Hello World, this is de.meldanor.autothesis.AutoThesis!");
 
         AutoThesis autoThesis = new AutoThesis(USER, REPO, TOKEN);
         autoThesis.execute();

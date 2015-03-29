@@ -1,4 +1,4 @@
-/*
+package de.meldanor.autothesis;/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2015 Kilian Gärtner
