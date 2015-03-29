@@ -35,7 +35,7 @@ public class Core {
 
     public static void main(String[] args) throws Exception {
 
-        System.out.println("Hello World, this is de.meldanor.autothesis.AutoThesis!");
+        System.out.println("Hello World, this is AutoThesis!");
 
         AutoThesis autoThesis = new AutoThesis(USER, REPO, TOKEN);
         autoThesis.execute();
