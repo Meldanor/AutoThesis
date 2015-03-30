@@ -25,32 +25,42 @@ package de.meldanor.autothesis;/*
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.GnuParser;
 import org.apache.commons.cli.HelpFormatter;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.Logger;
+
+import java.util.logging.LogManager;
 
 /**
  *
  */
 public class Core {
 
-    public static void main(String[] args) throws Exception {
+    public static final Logger logger = org.apache.logging.log4j.LogManager.getLogger();
 
-        AutoThesisCommandOption options = AutoThesisCommandOption.getInstance();
-        CommandLine commandLine =  new GnuParser().parse(options, args);
+    public static void main(String[] args) {
+        try {
+            AutoThesisCommandOption options = AutoThesisCommandOption.getInstance();
+            CommandLine commandLine = new GnuParser().parse(options, args);
 
-        // Missing commands
-        if (!commandLine.hasOption(options.getUserCommand()) ||
-                !commandLine.hasOption(options.getTokenCommand()) ||
-                !commandLine.hasOption(options.getRepoCommand())) {
-            new HelpFormatter().printHelp("autothesis", options);
-            return;
+            // Missing commands
+            if (!commandLine.hasOption(options.getUserCommand()) ||
+                    !commandLine.hasOption(options.getTokenCommand()) ||
+                    !commandLine.hasOption(options.getRepoCommand())) {
+                new HelpFormatter().printHelp("autothesis", options);
+                return;
+            }
+
+            String user = commandLine.getOptionValue(options.getUserCommand());
+            String repo = commandLine.getOptionValue(options.getRepoCommand());
+            String token = commandLine.getOptionValue(options.getTokenCommand());
+
+            logger.info("Hello World, this is AutoThesis!");
+            AutoThesis autoThesis = new AutoThesis(user, repo, token);
+            autoThesis.execute();
+        } catch (Exception e) {
+            logger.throwing(Level.ERROR, e);
         }
 
-        String user = commandLine.getOptionValue(options.getUserCommand());
-        String repo = commandLine.getOptionValue(options.getRepoCommand());
-        String token = commandLine.getOptionValue(options.getTokenCommand());
-
-        System.out.println("Hello World, this is AutoThesis!");
-        AutoThesis autoThesis = new AutoThesis(user, repo, token);
-        autoThesis.execute();
     }
 
 

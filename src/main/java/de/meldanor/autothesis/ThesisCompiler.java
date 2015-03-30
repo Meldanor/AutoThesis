@@ -42,7 +42,7 @@ public class ThesisCompiler {
     public void execute() throws Exception {
         if (!this.thesisFolder.exists())
             throw new FileNotFoundException("Can't find the thesis folder at './thesis'. Something went wrong");
-        System.out.println("Begin compilation");
+        Core.logger.info("Begin compilation");
         // The processes to execute
         List<ProcessBuilder> processes = Arrays.asList(
                 getPdfLatexBuilder(),
@@ -59,7 +59,7 @@ public class ThesisCompiler {
             Process process = processBuilder.start();
             process.waitFor();
         }
-        System.out.println("Finished compilation!");
+        Core.logger.info("Finished compilation!");
     }
 
     private ProcessBuilder getPdfLatexBuilder() {

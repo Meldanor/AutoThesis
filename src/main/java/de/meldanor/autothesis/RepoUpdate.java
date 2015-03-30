@@ -59,20 +59,20 @@ public class RepoUpdate {
     }
 
     public void execute() throws Exception {
-        System.out.println("Delete old content");
+        Core.logger.info("Delete old content");
         // Delete old content
         if (thesisFolder.exists()) {
             FileUtil.deleteDir(thesisFolder);
         }
         thesisFolder.mkdir();
 
-        System.out.println("Download new content");
+        Core.logger.info("Download new content");
         // Get the current version of the repo as a zipped entity
         Response response = this.archieveTarget.request().header("Authorization", "token " + token).get();
         if (Response.Status.OK.getStatusCode() != response.getStatus()) {
             throw new RuntimeException("Response is not 200! Response: " + response);
         }
-        System.out.println("Unzip new content");
+        Core.logger.info("Unzip new content");
         // unzip the content to the folder
         InputStream content = (InputStream) response.getEntity();
         ZipInputStream zipStream = new ZipInputStream(content);
@@ -91,6 +91,6 @@ public class RepoUpdate {
         }
         zipStream.closeEntry();
         zipStream.close();
-        System.out.println("Downloading new version of repo finished");
+        Core.logger.info("Downloading new version of repo finished");
     }
 }

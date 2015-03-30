@@ -63,7 +63,7 @@ public class ReleaseCreator {
             throw new FileNotFoundException("The compiled thesis.pdf was not found!");
 
         // Create a release by creating a tag in the repo ta
-        System.out.println("Create release");
+        Core.logger.info("Create release");
         Map<String, String> postValues = new HashMap<>();
         postValues.put("tag_name", getTagName());
         String content = new JsonSerializer().serialize(postValues);
@@ -76,12 +76,12 @@ public class ReleaseCreator {
 
         // Upload the pdf as an asset
         byte[] bytes = Files.readAllBytes(thesisPdfFile.toPath());
-        System.out.println("Upload release");
+        Core.logger.info("Upload release");
         response = client.target(upload_url).queryParam("name", "thesis.pdf").request().header("Authorization", "token " + token).post(Entity.entity(bytes, "application/pdf"));
         if (Response.Status.CREATED.getStatusCode() != response.getStatus()) {
             throw new RuntimeException("Response of creating release asset was not 201! Response: " + response);
         }
-        System.out.println("Upload finished!");
+        Core.logger.info("Upload finished!");
     }
 
     private String getTagName() {

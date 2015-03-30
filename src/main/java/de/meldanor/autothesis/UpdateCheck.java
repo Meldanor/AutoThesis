@@ -24,6 +24,7 @@ package de.meldanor.autothesis;/*
 
 import jodd.json.JsonParser;
 import jodd.json.JsonSerializer;
+import org.apache.logging.log4j.Level;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
@@ -74,7 +75,7 @@ public class UpdateCheck {
 
             return isAfter;
         } catch (Exception e) {
-            e.printStackTrace();
+            Core.logger.throwing(Level.ERROR, e);
         }
         return false;
     }

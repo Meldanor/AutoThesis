@@ -48,17 +48,17 @@ public class AutoThesis implements Closeable {
     }
 
     public void execute() throws Exception {
-        System.out.println("Check for updates");
+        Core.logger.info("Check for updates");
         if (updateCheck.hasRepositoryUpdated()) {
-            System.out.println("New update found - create new release");
+            Core.logger.info("New update found - create new release");
             repoUpdate.execute();
             thesisCompiler.execute();
             releaseCreator.execute();
 
-            System.out.println("Update finished");
+            Core.logger.info("Update finished");
             // Do stuff
         } else {
-            System.out.println("No updates found");
+            Core.logger.info("No updates found");
         }
     }
 
