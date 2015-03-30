@@ -63,8 +63,8 @@ public class RepoUpdate {
         // Delete old content
         if (thesisFolder.exists()) {
             FileUtil.deleteDir(thesisFolder);
-            thesisFolder.mkdir();
         }
+        thesisFolder.mkdir();
 
         System.out.println("Download new content");
         // Get the current version of the repo as a zipped entity
