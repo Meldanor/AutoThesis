@@ -21,10 +21,9 @@ This programm is command line based. The arguments are used for connecting to th
 * -t, --token The token to access the repo. Must have at least permission to access the repository (required)
 * -i, --interval The interval in minutes between each check for updates.
 
+The order of the argument is not relevant.
 ###Example
     java -jar AutoThesis.jar -u User -r UserRepo -t TokenSHA512
-
-All arguments are necessary, the order is not relevant.
 
 ###License
 MIT
