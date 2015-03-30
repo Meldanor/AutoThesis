@@ -22,9 +22,9 @@ package de.meldanor.autothesis;/*
  * THE SOFTWARE.
  */
 
-import org.apache.commons.cli.*;
-
-import javax.ws.rs.client.ClientBuilder;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.GnuParser;
+import org.apache.commons.cli.HelpFormatter;
 
 /**
  *

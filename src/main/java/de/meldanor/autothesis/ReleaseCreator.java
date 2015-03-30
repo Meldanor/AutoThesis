@@ -24,7 +24,6 @@
 
 package de.meldanor.autothesis;
 
-import jdk.nashorn.internal.parser.JSONParser;
 import jodd.json.JsonParser;
 import jodd.json.JsonSerializer;
 
@@ -37,10 +36,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 /**

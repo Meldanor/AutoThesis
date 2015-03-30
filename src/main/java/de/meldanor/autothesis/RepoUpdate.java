@@ -24,7 +24,6 @@
 
 package de.meldanor.autothesis;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import jodd.io.FileUtil;
 import org.glassfish.jersey.client.ClientProperties;
 
@@ -34,7 +33,6 @@ import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
