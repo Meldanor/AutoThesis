@@ -1,4 +1,4 @@
-package de.meldanor.autothesis;/*
+/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2015 Kilian Gärtner
@@ -22,34 +22,36 @@ package de.meldanor.autothesis;/*
  * THE SOFTWARE.
  */
 
-import org.apache.commons.cli.*;
+package de.meldanor.autothesis;
+
+import org.apache.commons.cli.Options;
 
 /**
  *
  */
-public class Core {
+public final class AutoThesisCommandOption extends Options {
 
-    public static void main(String[] args) throws Exception {
+    private static final AutoThesisCommandOption instance = new AutoThesisCommandOption();
 
-        AutoThesisCommandOption options = AutoThesisCommandOption.getInstance();
-        CommandLine commandLine =  new GnuParser().parse(options, args);
-
-        // Missing commands
-        if (!commandLine.hasOption(options.getUserCommand()) ||
-                !commandLine.hasOption(options.getTokenCommand()) ||
-                !commandLine.hasOption(options.getRepoCommand())) {
-            new HelpFormatter().printHelp("autothesis", options);
-            return;
-        }
-
-        String user = commandLine.getOptionValue(options.getUserCommand());
-        String repo = commandLine.getOptionValue(options.getRepoCommand());
-        String token = commandLine.getOptionValue(options.getTokenCommand());
-
-        System.out.println("Hello World, this is AutoThesis!");
-        AutoThesis autoThesis = new AutoThesis(user, repo, token);
-        autoThesis.execute();
+    public static AutoThesisCommandOption getInstance() {
+        return instance;
     }
 
+    private AutoThesisCommandOption() {
+        addOption(getUserCommand(), "user", true, "The name of the user");
+        addOption(getRepoCommand(), "repo", true, "The name of the repository");
+        addOption(getTokenCommand(), "token", true, "The token for access. The token must have at least the permission to the repo.");
+    }
 
+    public String getUserCommand() {
+        return "u";
+    }
+
+    public String getRepoCommand() {
+        return "r";
+    }
+
+    public String getTokenCommand() {
+        return "t";
+    }
 }
