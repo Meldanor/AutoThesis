@@ -16,9 +16,13 @@ to GitHub.
 ###Commandline
 This programm is command line based. The arguments are used for connecting to the repository via the GitHub API v3.
 
-* -u, --user The name of the user
-* -r, --repo The name of the repository
-* -t, --token The token to access the repo. Must have at least permission to access the repository
+* -u, --user The name of the user (required)
+* -r, --repo The name of the repository (required)
+* -t, --token The token to access the repo. Must have at least permission to access the repository (required)
+* -i, --interval The interval in minutes between each check for updates.
+
+###Example
+    java -jar AutoThesis.jar -u User -r UserRepo -t TokenSHA512
 
 All arguments are necessary, the order is not relevant.
 
