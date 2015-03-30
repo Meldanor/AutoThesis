@@ -24,6 +24,8 @@ package de.meldanor.autothesis;/*
 
 import org.apache.commons.cli.*;
 
+import javax.ws.rs.client.ClientBuilder;
+
 /**
  *
  */

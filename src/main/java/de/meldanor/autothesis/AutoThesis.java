@@ -34,6 +34,7 @@ public class AutoThesis implements Closeable {
 
     private final Client client;
     private final UpdateCheck updateCheck;
+    private final RepoUpdate repoUpdate;
     private final ThesisCompiler thesisCompiler;
     private final ReleaseCreator releaseCreator;
 
@@ -41,6 +42,7 @@ public class AutoThesis implements Closeable {
 
         this.client = ClientBuilder.newClient();
         this.updateCheck = new UpdateCheck(client, user, repo, token);
+        this.repoUpdate = new RepoUpdate(client, user, repo, token);
         this.thesisCompiler = new ThesisCompiler();
         this.releaseCreator = new ReleaseCreator(client, user, repo, token);
     }
@@ -49,6 +51,7 @@ public class AutoThesis implements Closeable {
         System.out.println("Check for updates");
         if (updateCheck.hasRepositoryUpdated()) {
             System.out.println("New update found - create new release");
+            repoUpdate.execute();
             thesisCompiler.execute();
             releaseCreator.execute();
 

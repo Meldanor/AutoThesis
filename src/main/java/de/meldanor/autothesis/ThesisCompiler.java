@@ -37,11 +37,11 @@ public class ThesisCompiler {
     private File thesisFolder = new File("thesis");
 
     public ThesisCompiler() throws Exception {
-        if (!this.thesisFolder.exists())
-            throw new FileNotFoundException("Can't find the thesis folder at './thesis'. Please add the thesis folder to this position");
     }
 
     public void execute() throws Exception {
+        if (!this.thesisFolder.exists())
+            throw new FileNotFoundException("Can't find the thesis folder at './thesis'. Something went wrong");
         System.out.println("Begin compilation");
         // The processes to execute
         List<ProcessBuilder> processes = Arrays.asList(
