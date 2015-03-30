@@ -28,7 +28,8 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 
-import java.util.logging.LogManager;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -55,13 +56,19 @@ public class Core {
             String token = commandLine.getOptionValue(options.getTokenCommand());
 
             logger.info("Hello World, this is AutoThesis!");
-            AutoThesis autoThesis = new AutoThesis(user, repo, token);
-            autoThesis.execute();
+            long intervalMinutes = Long.parseLong(commandLine.getOptionValue(options.getIntervalCommand(), "60"));
+            logger.info("Check for update interval: " + intervalMinutes + " min");
+            final AutoThesis autoThesis = new AutoThesis(user, repo, token);
+            Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
+                try {
+                    autoThesis.execute();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }, 0, intervalMinutes, TimeUnit.MINUTES);
+
         } catch (Exception e) {
             logger.throwing(Level.ERROR, e);
         }
-
     }
-
-
 }

@@ -38,9 +38,10 @@ public final class AutoThesisCommandOption extends Options {
     }
 
     private AutoThesisCommandOption() {
-        addOption(getUserCommand(), "user", true, "The name of the user");
-        addOption(getRepoCommand(), "repo", true, "The name of the repository");
-        addOption(getTokenCommand(), "token", true, "The token for access. The token must have at least the permission to the repo.");
+        addOption(getUserCommand(), "user", true, "The name of the user (required)");
+        addOption(getRepoCommand(), "repo", true, "The name of the repository (required)");
+        addOption(getTokenCommand(), "token", true, "The token for access. The token must have at least the permission to the repo (required)");
+        addOption(getIntervalCommand(), "interval", true, "The interval of checking for updates in minutes.");
     }
 
     public String getUserCommand() {
@@ -53,5 +54,9 @@ public final class AutoThesisCommandOption extends Options {
 
     public String getTokenCommand() {
         return "t";
+    }
+
+    public String getIntervalCommand() {
+        return "i";
     }
 }
